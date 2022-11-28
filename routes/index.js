@@ -26,11 +26,14 @@ router.get('/', function (req, res, next) {
             console.log("Creating table and inserting some sample data");
             db.exec(`CREATE TABLE blog_post (
                      blog_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                     blog_author text NOT NULL,
                      title text NOT NULL,
-                     content blob NULL);`,
+                     blog_author text NOT NULL,
+                     content text NULL);
+                     
+                     insert into blog_post (blog_author, title, content)
+                     values ('Anonymous', 'Day 1', 'Hope you all are having a good day! Mine has been fine so far...')`,
               () => {
-                db.all(`SELECT * FROM blog_post`, 
+                db.all(`SELECT blog_id, blog_author, title, content FROM blog_post`, 
                 (err, rows) => {
                   res.render('index', { title: 'My Blog', data: rows });
                 });
@@ -49,9 +52,9 @@ router.post('/new', (req, res, next) => {
         console.log("Getting error " + err);
         exit(1);
       }
-      console.log("inserting " + req.body.text);
+      console.log("inserting " + req.body.title);
       db.run(`INSERT INTO blog_post ( blog_author, title, content)
-      VALUES (?);`, [req.body.text]); //sanitizing
+      VALUES (?, ?, ?);`, [req.body.author, req.body.postTitle, req.body.content]); //sanitizing
       //redirect to homepage
       res.redirect('/');
     }

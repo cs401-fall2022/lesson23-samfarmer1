@@ -9,20 +9,23 @@ block content
 
       each val in data
         div(class="post")
-          p POST ID: #{val.blog_id}
+          p Author: #{author}
+          p Title: #{postTitle}
+          p Content: #{content}
 
   div(class="content")
     h2(class="h2")= "Create a New Post!"
       form(action='/new', method='POST')
-      div
-        label(for="blog_author")="Author Name:"
-        input(name="blog_author", id="blog_author", value="")
-        br
-        label(for="title")="Blog Title:"
-        input(name="title", id="title", value="")
-        br
-        label(for="title")="Blog Content:"
-        input(type='text', name='text', value='')
+        div
+          label(for="author")="Author Name:"
+          input(name="author", id="author", value="")
+          br
+          label(for="postTitle")="Blog Title:"
+          input(name="postTitle", id="postTitle", value="")
+          br
+          label(for="content")="Blog Content:"
+          input(name='content', id="content", value='')
+        div
         button(type='submit')
           p Submit
 
