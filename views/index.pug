@@ -13,8 +13,13 @@ block content
           p Title: #{val.title}
           div(class="post-content") 
             p #{val.content}
-          button(type="submit")
-            p update
+          form(action='/update', method='POST')
+            label(for="content")="Post ID: "
+            input(name='id', id="id", value=val.blog_id)
+            label(for="content")=" New Content: "
+            input(name='content', id="content", value='')
+            button(type="submit", onclick="editText()")
+              p update
 
   div(class="new-content")
     h2(class="h2")= "Create a New Post!"
