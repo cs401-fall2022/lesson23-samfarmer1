@@ -1,7 +1,7 @@
 # Retrospective
 
-- name: Jane Doe
-- email: janedoe@u.boisestate.edu
+- name: Samantha Farmer
+- email: samanthafarmer@u.boisestate.edu
 
 ## Instructions
 

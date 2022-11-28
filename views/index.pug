@@ -3,12 +3,26 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  ul 
-    each val in data
-      li= val.blog_id + ": " + val.title
-  br
-  form(action='/new', method='POST')
-    input(type='text', name='text', value='')
-    button(type='submit')
-      p Submit Post
-  div 
+
+  div(class="content")
+    h2(class="h2")= "Recent Posts"
+
+      each val in data
+        div(class="post")
+          p POST ID: #{val.blog_id}
+
+  div(class="content")
+    h2(class="h2")= "Create a New Post!"
+      form(action='/new', method='POST')
+      div
+        label(for="blog_author")="Author Name:"
+        input(name="blog_author", id="blog_author", value="")
+        br
+        label(for="title")="Blog Title:"
+        input(name="title", id="title", value="")
+        br
+        label(for="title")="Blog Content:"
+        input(type='text', name='text', value='')
+        button(type='submit')
+          p Submit
+

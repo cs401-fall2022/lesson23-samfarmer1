@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
         (err, rows) => {
           if (rows.length === 1) {
             console.log("Table exists!");
-            db.all(`SELECT blog_id, title FROM blog_post`, (err, rows) => {
+            db.all(`SELECT * FROM blog_post`, (err, rows) => {
               console.log("returning " + rows.length + " records");
               res.render('index', { title: 'My Blog', data: rows });
             });
@@ -26,9 +26,11 @@ router.get('/', function (req, res, next) {
             console.log("Creating table and inserting some sample data");
             db.exec(`CREATE TABLE blog_post (
                      blog_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                     title text NOT NULL);`,
+                     blog_author text NOT NULL,
+                     title text NOT NULL,
+                     content blob NULL);`,
               () => {
-                db.all(`SELECT blog_id, title FROM blog_post`, 
+                db.all(`SELECT * FROM blog_post`, 
                 (err, rows) => {
                   res.render('index', { title: 'My Blog', data: rows });
                 });
@@ -43,7 +45,15 @@ router.post('/new', (req, res, next) => {
   var db = new sqlite3.Database('blog.sqlite3',
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
     (err) => {
-
+      if (err) {
+        console.log("Getting error " + err);
+        exit(1);
+      }
+      console.log("inserting " + req.body.text);
+      db.run(`INSERT INTO blog_post ( blog_author, title, content)
+      VALUES (?);`, [req.body.text]); //sanitizing
+      //redirect to homepage
+      res.redirect('/');
     }
   );
 });

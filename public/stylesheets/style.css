@@ -1,8 +1,28 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(255,255,153);
 }
 
 a {
   color: #00B7FF;
 }
+label{
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+content{
+  background-color: rgb(255,255,153);
+}
+.content {
+  text-align: left;
+  background-color: rgb(225,225,204);
+  padding: 5px;
+  margin: 25px;
+  border-radius: 10px;
+}
+
+.post{ 
+  background-color: rgb(255,204,153);
+}
+
