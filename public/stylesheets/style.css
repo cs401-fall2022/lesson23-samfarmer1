@@ -4,9 +4,10 @@ body {
   background-color: rgb(255,255,153);
 }
 
-a {
-  color: #00B7FF;
+h1{
+  text-align: center;
 }
+
 
 p{
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -16,17 +17,32 @@ label{
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-content{
-  background-color: rgb(255,255,153);
-}
-
 button{
   border-radius: 25%;
   margin: 5px;
   border-style: solid;
   border-width: 1px;
 }
-.content {
+
+.recent-content {
+  text-align: left;
+  background-color: rgb(225,225,204);
+  padding: 5px;
+  margin: 20px;
+  border-radius: 10px;
+  overflow: scroll;
+  height: 500px;
+}
+
+.delete-content {
+  text-align: left;
+  background-color: rgb(225,225,204);
+  padding: 5px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.new-content {
   text-align: left;
   background-color: rgb(225,225,204);
   padding: 5px;

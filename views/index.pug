@@ -4,9 +4,8 @@ block content
   h1= title
   p Welcome to #{title}
 
-  div(class="content")
+  div(class="recent-content")
     h2(class="h2")= "Recent Posts"
-
       for val in data
         div(class="post")
           p Post ID: #{val.blog_id}
@@ -14,8 +13,10 @@ block content
           p Title: #{val.title}
           div(class="post-content") 
             p #{val.content}
+          button(type="submit")
+            p update
 
-  div(class="content")
+  div(class="new-content")
     h2(class="h2")= "Create a New Post!"
       form(action='/new', method='POST')
         div
@@ -30,7 +31,7 @@ block content
         div
         button(type='submit')
           p Submit
-  div(class="content")
+  div(class="delete-content")
     h2(class="h2")= "Delete a Blog Post"
       form(action='/delete', method='POST')
         label(for="content")="Post ID: "
