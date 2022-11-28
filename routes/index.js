@@ -44,7 +44,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/new', (req, res, next) => {
-  console.log("deleting stuff without checking if it is valid! SEND IT!");
   var db = new sqlite3.Database('blog.sqlite3',
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
     (err) => {
@@ -52,9 +51,25 @@ router.post('/new', (req, res, next) => {
         console.log("Getting error " + err);
         exit(1);
       }
-      console.log("inserting " + req.body.title);
+      console.log("inserting new post");
       db.run(`INSERT INTO blog_post ( blog_author, title, content)
       VALUES (?, ?, ?);`, [req.body.author, req.body.postTitle, req.body.content]); //sanitizing
+      //redirect to homepage
+      res.redirect('/');
+    }
+  );
+});
+
+router.post('/delete', (req, res, next) => {
+  var db = new sqlite3.Database('blog.sqlite3',
+    sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    (err) => {
+      if (err) {
+        console.log("Getting error " + err);
+        exit(1);
+      }
+      console.log("deleting post");
+      db.run(`DELETE FROM blog_post WHERE blog_id=?;`, [req.body.id]); //sanitizing
       //redirect to homepage
       res.redirect('/');
     }

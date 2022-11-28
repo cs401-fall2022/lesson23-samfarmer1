@@ -7,11 +7,13 @@ block content
   div(class="content")
     h2(class="h2")= "Recent Posts"
 
-      each val in data
+      for val in data
         div(class="post")
-          p Author: #{author}
-          p Title: #{postTitle}
-          p Content: #{content}
+          p Post ID: #{val.blog_id}
+          p Author: #{val.blog_author}
+          p Title: #{val.title}
+          div(class="post-content") 
+            p #{val.content}
 
   div(class="content")
     h2(class="h2")= "Create a New Post!"
@@ -28,4 +30,10 @@ block content
         div
         button(type='submit')
           p Submit
+  div(class="content")
+    h2(class="h2")= "Delete a Blog Post"
+      form(action='/delete', method='POST')
+        input(name='id', id="id", value="")
+        button(type='submit')
+          p Delete
 
